@@ -15,7 +15,7 @@ export const useCountdown = (initialValue: number, interval = 1000) => {
         return prev;
       });
     }, interval);
-  }, [initialValue]);
+  }, [interval]);
 
   const resetCountdown = useCallback(() => {
     clearInterval(Number(intervalRef.current!));
