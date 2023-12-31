@@ -8,7 +8,6 @@ type CharactersProps = {
 
 const Character = ({ state, character, className }: CharactersProps) => {
   // const { systemTheme } = useThemeContext();
-  // console.log(character, state)
   return (
     <span
       style={{

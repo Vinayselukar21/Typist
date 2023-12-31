@@ -50,7 +50,6 @@ const UserTyped = ({ check, charTyped, word }: UserTypedProps) => {
 
 
   // const { systemTheme } = useThemeContext();
-  console.log(characters)
   return (
     <StyledDiv
       className='md:character absolute left-0 top-0 z-10 break-all font-mono text-xl lg:text-2xl'

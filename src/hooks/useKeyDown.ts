@@ -15,7 +15,6 @@ export const useKeyDown = (active: boolean) => {
 
   const handleKeyDown = useCallback(
     ({ key, code }: KeyboardEvent) => {
-      console.log(key, code);
       if (!active || !isAllowedCode(code)) return;
 
       if (key === "Backspace") {
@@ -51,7 +50,6 @@ export const useKeyDown = (active: boolean) => {
     setCharTyped("");
   }, [setCharTyped]);
 
-  console.log(charTyped);
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);

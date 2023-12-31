@@ -22,7 +22,6 @@ export const generateWord = (n: number): string => {
 };
 
 export const calculateAccuracy = (expectedWord: string, typedWord: string) => {
-  console.log(expectedWord, typedWord);
   let correctChars = 0;
   for (let i = 0; i < typedWord.length; i++) {
     if (typedWord[i] === expectedWord[i]) {
@@ -35,7 +34,6 @@ export const calculateAccuracy = (expectedWord: string, typedWord: string) => {
     incorrectChars: typedWord.length - correctChars,
     accuracy: (correctChars / typedWord.length) * 100,
   };
-  console.log(accuracyMetrics);
   return accuracyMetrics;
 };
 
@@ -53,12 +51,10 @@ export const calculateWPM = (
     wpm: netWPM,
     cpm: typedWord.length / minutes,
   };
-  console.log(results);
   return results;
 };
 
 export const calculateErrorPercentage = (accuracy: number) => {
-  console.log(100 - accuracy);
   return 100 - accuracy;
 };
 

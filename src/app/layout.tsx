@@ -22,7 +22,7 @@ export default function RootLayout({
 
       >
         {" "}
-        <div className={`px-0 sm:px-10 bg-gradient-to-br w-full from-blue-900 via-blue-600 to-blue-400 h-screen`}>
+        <div className={`bg-gradient-to-br w-full from-blue-900 via-blue-600 to-blue-400 h-screen`}>
 
           <ThemeProvider
             attribute="class"

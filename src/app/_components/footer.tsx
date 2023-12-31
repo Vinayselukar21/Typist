@@ -16,7 +16,7 @@ const Footer = () => {
     return (
         <div className="  flex flex-col  sm:flex-row sm:justify-between font-mono text-white px-20 py-4 ">
             <div className="flex justify-center my-4 sm:justify-between  gap-4">
-                <Tooltip tooltipId='instagram'>
+                {/* <Tooltip tooltipId='instagram'>
                     <Instagram
                         data-tooltip-content="Instagram"
                         data-tooltip-id="instagram"
@@ -27,7 +27,7 @@ const Footer = () => {
                             window.open("https://www.instagram.com/vinayselukar/", "_blank");
                         }}
                     />
-                </Tooltip>
+                </Tooltip> */}
                 <Tooltip tooltipId="github">
                     <Github
                         data-tooltip-content="GitHub"
@@ -93,13 +93,13 @@ const Footer = () => {
                 </span>
             </div>
             <div className="flex items-center gap-2">
-                <Code2 className="text-xl font-bold" />
+                <Code2 className="text-teal-200" />
                 <Tooltip tooltipId="source-code">
                     <Link
                         href="https://github.com/Vinayselukar21/Typist"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xl hover:underline"
+                        className="font-mono text-teal-200 text-xl hover:underline"
                         data-tooltip-content="Give me a star 😊"
                         data-tooltip-id="source-code"
                     >

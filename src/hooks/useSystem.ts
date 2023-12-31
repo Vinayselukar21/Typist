@@ -78,23 +78,19 @@ export const useSystem = () => {
     resetCharTyped();
     resetCursorPointer();
   }
-  console.log(results, "these are results");
   if (typingState === "start") {
     startCountdown();
     setTypingState("typing");
   }
 
   if (countdown === 0) {
-    console.log(typingState);
-    console.log("word typed completely");
-    console.log(totalCharacterTyped);
     const { accuracy } = calculateAccuracy(totalWord, totalCharacterTyped);
     const { wpm, cpm } = calculateWPM(totalCharacterTyped, accuracy, time);
     const error = calculateErrorPercentage(accuracy);
-    console.log(accuracy, "This is accuracy");
-    console.log(wpm, "This is wpm");
-    console.log(cpm, "This is cpm");
-    console.log(error, "This is error");
+    // console.log(accuracy, "This is accuracy");
+    // console.log(wpm, "This is wpm");
+    // console.log(cpm, "This is cpm");
+    // console.log(error, "This is error");
 
     setResults({
       accuracy: accuracy,
@@ -110,8 +106,6 @@ export const useSystem = () => {
     openModal("result");
     restartTest();
   }
-
-  console.log(countdown, "this is countdown in use system");
 
   return {
     charTyped,

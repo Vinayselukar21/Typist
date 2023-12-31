@@ -9,6 +9,9 @@ import WordWrapper from "./_components/WordWrapper";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import WordContainer from "./_components/WordContainer";
+import { Code2 } from "lucide-react";
+import Link from "next/link";
+import Tooltip from "./_components/Tooltip";
 export default function Home() {
   const {
     charTyped,
@@ -29,7 +32,7 @@ export default function Home() {
     restartTest
   } = useSystem();
   return (
-    <div className="min-h-full flex flex-col px-0 sm:px-10">
+    <div className="mx-auto flex h-full max-w-7xl flex-col gap-4 px-4 xl:px-0">
       <div className="flex flex-col  justify-center md:justify-start text-center gap-y-8 flex-1 px-4 pb-10">
         <Header />
         <div className="block md:hidden">
@@ -37,13 +40,13 @@ export default function Home() {
             This is a typing practice app. You can only use it on a desktop!
           </h3>
         </div>
-        <TimeCategory
-          time={time}
-          setLocalStorage={setLocalStorageValue}
-          setTime={setTime}
-          restart={restartTest}
-        />
         <div className="hidden md:block">
+          <TimeCategory
+            time={time}
+            setLocalStorage={setLocalStorageValue}
+            setTime={setTime}
+            restart={restartTest}
+          />
           <Countdown countdown={countdown} reset={resetCountdown} />
           <WordWrapper
             focused={wordContainerFocused}
@@ -58,7 +61,24 @@ export default function Home() {
           </WordWrapper>
         </div>
       </div>
-      <Footer />
+      <div className="hidden md:block">
+        <Footer />
+      </div>
+      <div className="block md:hidden flex items-center justify-center gap-2">
+        <Code2 className="text-xl font-bold" />
+        <Tooltip tooltipId="source-code">
+          <Link
+            href="https://github.com/Vinayselukar21/Typist"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xl hover:underline"
+            data-tooltip-content="Give me a star 😊"
+            data-tooltip-id="source-code"
+          >
+            Source Code ⭐
+          </Link>
+        </Tooltip>
+      </div>
       <ModalComponent
         type='result'
         isOpen={modalIsOpen}
