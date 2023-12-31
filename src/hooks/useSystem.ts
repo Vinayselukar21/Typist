@@ -87,10 +87,6 @@ export const useSystem = () => {
     const { accuracy } = calculateAccuracy(totalWord, totalCharacterTyped);
     const { wpm, cpm } = calculateWPM(totalCharacterTyped, accuracy, time);
     const error = calculateErrorPercentage(accuracy);
-    // console.log(accuracy, "This is accuracy");
-    // console.log(wpm, "This is wpm");
-    // console.log(cpm, "This is cpm");
-    // console.log(error, "This is error");
 
     setResults({
       accuracy: accuracy,
