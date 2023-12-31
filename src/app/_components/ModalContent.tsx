@@ -5,8 +5,6 @@ import styled from 'styled-components';
 // import { useScreenShot } from '../hooks/useScreenShot';
 // import { useThemeContext } from '../hooks/useTheme';
 
-import { IoCopy } from 'react-icons/io5';
-import { FaCameraRetro } from 'react-icons/fa';
 
 import Character from './Character';
 import ResultCard from './ResultCard';

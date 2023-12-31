@@ -12,7 +12,7 @@ import WordContainer from "./_components/WordContainer";
 import { Code2 } from "lucide-react";
 import Link from "next/link";
 import Tooltip from "./_components/Tooltip";
-export default function Home() {
+function Home() {
   const {
     charTyped,
     word,
@@ -64,7 +64,7 @@ export default function Home() {
       <div className="hidden md:block">
         <Footer />
       </div>
-      <div className="block md:hidden flex items-center justify-center gap-2">
+      <div className="flex md:hidden  items-center justify-center gap-2">
         <Code2 className="text-xl font-bold" />
         <Tooltip tooltipId="source-code">
           <Link
@@ -101,3 +101,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;

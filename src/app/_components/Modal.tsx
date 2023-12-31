@@ -1,5 +1,4 @@
 import Modal from 'react-modal';
-import { IoIosCloseCircle } from 'react-icons/io';
 // import { useThemeContext } from '../hooks/useTheme';
 
 type ModalProps = {
@@ -64,12 +63,12 @@ const ModalComponent = ({
           onClick={() => onRequestClose(type)}
           className='absolute right-1 top-1'
         >
-          <IoIosCloseCircle
+          {/* <IoIosCloseCircle
             className='text-4xl'
-          // style={{
-          //   color: systemTheme.text.secondary,
-          // }}
-          />
+          style={{
+            color: systemTheme.text.secondary,
+          }}
+          /> */}
         </button>
       </div>
       <div
