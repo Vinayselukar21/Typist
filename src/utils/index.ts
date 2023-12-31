@@ -53,10 +53,12 @@ export const calculateWPM = (
     wpm: netWPM,
     cpm: typedWord.length / minutes,
   };
+  console.log(results);
   return results;
 };
 
 export const calculateErrorPercentage = (accuracy: number) => {
+  console.log(100 - accuracy);
   return 100 - accuracy;
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useCallback, useState } from "react";
 
 // import { useThemeContext } from '../hooks/useTheme';
@@ -12,10 +12,29 @@ type UserTypedProps = {
   word: string;
 };
 
+
+// Define the cursorBlink animation
+const cursorBlink = keyframes`
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+`;
+
+
 const StyledDiv = styled.div`
   &:last-child {
     &::after {
-      background-color: #fff;
+    content: '';
+    width: 2px;
+    height: 24px;
+    margin-bottom: -2px;
+    display: inline-block;
+    background-color:     #999e9b;
+;
+    animation: ${cursorBlink} 0.65s  infinite;
     }
   }
   `;
@@ -26,16 +45,7 @@ const UserTyped = ({ check, charTyped, word }: UserTypedProps) => {
     return charTyped.split('');
   }, [charTyped]);
 
-  const checkCharacter = useCallback(
-    (index: number) => {
-      if (charTyped[index] === word[index]) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    [charTyped, word]
-  );
+
 
 
 
@@ -48,7 +58,7 @@ const UserTyped = ({ check, charTyped, word }: UserTypedProps) => {
     >
       {characters.map((_, index) => {
         return (
-          <Character character={word.charAt(index)} key={index} state={checkCharacter(index)} />
+          <Character character={word.charAt(index)} key={index} state={check(index)} />
         );
       })}
     </StyledDiv>

@@ -1,5 +1,5 @@
 "use client";
-import { MdCenterFocusStrong } from 'react-icons/md';
+import { Focus } from 'lucide-react'
 type WordWrapperProps = {
   children: React.ReactNode;
   focused: boolean;
@@ -13,7 +13,7 @@ const WordWrapper = ({ children, focused, setFocused }: WordWrapperProps) => {
         className={`${focused ? 'opacity-0' : 'opacity-100'
           } flex items-center justify-center gap-3 transition-all duration-500`}
       >
-        <MdCenterFocusStrong className='text-center text-2xl' />
+        <Focus className='text-center text-2xl' />
         <span className={`text-center font-mono text-lg `}>
           Focus to start typing
         </span>

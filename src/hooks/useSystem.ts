@@ -1,9 +1,9 @@
 "use client";
-import { useCallback, useState } from "react";
-// import { useCountdown } from "./useCountdown";
+import { useCallback, useState, useEffect, useRef } from "react";
+import { useCountdown } from "./useCountdown";
 import { useKeyDown } from "./useKeyDown";
-// import { useLocalStorage } from "./useLocalStorage";
-// import { useModal } from "./useModal";
+import { useLocalStorage } from "./useLocalStorage";
+import { useModal } from "./useModal";
 // import { useWord } from "./useWord";
 import { useWord } from "./useWord";
 
@@ -13,13 +13,14 @@ import {
   calculateWPM,
 } from "../utils";
 
-export interface Results {
+interface Results {
   accuracy: number;
   cpm: number;
   wpm: number;
   error: number;
 }
-export interface HistoryType {
+
+interface HistoryType {
   wordHistory: string;
   typedHistory: string;
 }
@@ -31,16 +32,14 @@ export const useSystem = () => {
     cpm: 0,
     error: 0,
   });
-
   const [history, setHistory] = useState<HistoryType>({
     wordHistory: "",
     typedHistory: "",
   });
-
-  // const { setLocalStorageValue, getLocalStorageValue } = useLocalStorage();
+  const { setLocalStorageValue, getLocalStorageValue } = useLocalStorage();
   const [wordContainerFocused, setWordContainerFocused] = useState(false);
-  // const [time, setTime] = useState(() => getLocalStorageValue("time") || 15000);
-  // const { countdown, resetCountdown, startCountdown } = useCountdown(time);
+  const [time, setTime] = useState(() => getLocalStorageValue("time") || 15000);
+  const { countdown, resetCountdown, startCountdown } = useCountdown(time);
   const { word, updateWord, totalWord } = useWord(30);
 
   const {
@@ -53,24 +52,16 @@ export const useSystem = () => {
     setTotalCharacterTyped,
     setTypingState,
   } = useKeyDown(true);
-  // const { modalIsOpen, aboutModal, openModal, closeModal } = useModal();
+  const { modalIsOpen, aboutModal, openModal, closeModal } = useModal();
 
-  const restartTest = useCallback(() => {
-    // resetCountdown();
+  const restartTest = () => {
+    resetCountdown();
     updateWord(true);
     resetCursorPointer();
     resetCharTyped();
     setTypingState("idle");
     setTotalCharacterTyped("");
-  }, [
-    // resetCountdown,
-    updateWord,
-    resetCursorPointer,
-    resetCharTyped,
-    setTypingState,
-    setTotalCharacterTyped,
-  ]);
-  console.log(charTyped);
+  };
   const checkCharacter = useCallback(
     (index: number) => {
       if (charTyped[index] === word[index]) {
@@ -86,52 +77,61 @@ export const useSystem = () => {
     updateWord();
     resetCharTyped();
     resetCursorPointer();
-    console.log("word typed completely");
-    const { accuracy } = calculateAccuracy(totalWord, totalCharacterTyped);
-    const { wpm, cpm } = calculateWPM(totalCharacterTyped, accuracy, 60000);
-    const error = calculateErrorPercentage(accuracy);
-
-    setResults({
-      accuracy,
-      wpm,
-      cpm,
-      error,
-    });
   }
-
+  console.log(results, "these are results");
   if (typingState === "start") {
-    // startCountdown();
+    startCountdown();
     setTypingState("typing");
   }
 
-  //   setHistory({
-  //     wordHistory: totalWord,
-  //     typedHistory: totalCharacterTyped,
-  //   });
+  if (countdown === 0) {
+    console.log(typingState);
+    console.log("word typed completely");
+    console.log(totalCharacterTyped);
+    const { accuracy } = calculateAccuracy(totalWord, totalCharacterTyped);
+    const { wpm, cpm } = calculateWPM(totalCharacterTyped, accuracy, time);
+    const error = calculateErrorPercentage(accuracy);
+    console.log(accuracy, "This is accuracy");
+    console.log(wpm, "This is wpm");
+    console.log(cpm, "This is cpm");
+    console.log(error, "This is error");
 
-  //   openModal("result");
-  //   restartTest();
-  // }
+    setResults({
+      accuracy: accuracy,
+      wpm: wpm,
+      cpm: cpm,
+      error: error,
+    });
+    setHistory({
+      wordHistory: totalWord,
+      typedHistory: totalCharacterTyped,
+    });
+
+    openModal("result");
+    restartTest();
+  }
+
+  console.log(countdown, "this is countdown in use system");
 
   return {
     charTyped,
-    // countdown,
+    countdown,
     cursorPosition,
-    // modalIsOpen,
-    // aboutModal,
+    modalIsOpen,
+    aboutModal,
     results,
-    // time,
+    time,
     history,
     word,
     wordContainerFocused,
     setWordContainerFocused,
-    // setTime,
-    // resetCountdown,
-    // setLocalStorageValue,
+    setTime,
+    resetCountdown,
+    setLocalStorageValue,
     updateWord,
     restartTest,
     checkCharacter,
-    // closeModal,
-    // openModal,
+    closeModal,
+    openModal,
   };
 };
