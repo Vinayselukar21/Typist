@@ -12,7 +12,7 @@ import WordContainer from "./_components/WordContainer";
 import { Code2 } from "lucide-react";
 import Link from "next/link";
 import Tooltip from "./_components/Tooltip";
-function Home() {
+export default function Home() {
   const {
     charTyped,
     word,
@@ -39,6 +39,21 @@ function Home() {
           <h3 className="text-white">
             This is a typing practice app. You can only use it on a desktop!
           </h3>
+          <div className="flex  items-center justify-center gap-2 my-5">
+            <Code2 className="text-xl font-bold" />
+            <Tooltip tooltipId="source-code">
+              <Link
+                href="https://github.com/Vinayselukar21/Typist"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xl hover:underline"
+                data-tooltip-content="Give me a star 😊"
+                data-tooltip-id="source-code"
+              >
+                Source Code ⭐
+              </Link>
+            </Tooltip>
+          </div>
         </div>
         <div className="hidden md:block">
           <TimeCategory
@@ -64,21 +79,7 @@ function Home() {
       <div className="hidden md:block">
         <Footer />
       </div>
-      <div className="flex md:hidden  items-center justify-center gap-2">
-        <Code2 className="text-xl font-bold" />
-        <Tooltip tooltipId="source-code">
-          <Link
-            href="https://github.com/Vinayselukar21/Typist"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-xl hover:underline"
-            data-tooltip-content="Give me a star 😊"
-            data-tooltip-id="source-code"
-          >
-            Source Code ⭐
-          </Link>
-        </Tooltip>
-      </div>
+
       <ModalComponent
         type='result'
         isOpen={modalIsOpen}
@@ -101,4 +102,3 @@ function Home() {
     </div>
   );
 }
-export default Home;
